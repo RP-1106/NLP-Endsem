@@ -1,0 +1,53 @@
+Here's an algorithmic approach for story generation with context and genre detection, 
+incorporating Large Language Models (LLMs):
+
+1. Context Gathering:
+Input Prompt: Begin with a single-sentence prompt from the user (e.g., "A robot wakes up on a 
+deserted island").
+
+Question Generation:
+Use an LLM trained on question-answering tasks to generate a set of relevant questions based 
+on the prompt (e.g., "What kind of robot is it?", "Why is it deserted?").
+User Interaction: Allow the user to answer these questions or provide additional details to build 
+context for the story.
+
+2. Story Creation:
+Context Integration: Feed the original prompt, user answers, and any additional information into 
+a narrative LLM trained on story generation tasks.
+
+Story Generation: The LLM will then generate a story that incorporates the provided context and 
+continues the narrative in a coherent and engaging way.
+
+3. Genre Detection:
+Text Classification: Utilize a pre-trained text classification model to analyze the generated story.
+Genre Probability: The model assigns probabilities to different genres (e.g., sci-fi, mystery, romance)
+based on the language patterns and themes within the story.
+
+Algorithm:
+
+Prompt Acquisition:
+Get a single-sentence story prompt from the user.
+
+Context Building:
+Employ an LLM to generate relevant questions based on the prompt.
+Allow user interaction to answer these questions and provide additional context.
+
+Story Generation:
+Integrate the prompt, user answers, and any additional details.
+Feed the combined information into a narrative LLM for story creation.
+
+Genre Classification:
+Utilize a pre-trained text classification model to analyze the generated story.
+Assign genre probabilities based on the model's output.
+
+Additional Considerations:
+User Control: Allow users to specify desired genre preferences or influence the story direction 
+through mid-point prompts.
+LLM Selection: Choose LLMs specifically trained for question generation, narrative creation, and 
+text classification tasks.
+Explainability: Consider incorporating LLM explainability techniques to provide insights into the 
+genre classification process.
+Limitations:
+
+LLMs can generate nonsensical content or veer off course.
+Genre classification might not be perfect, especially for complex or blended genres.
