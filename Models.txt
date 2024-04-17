@@ -1,0 +1,11 @@
+BERT (Bidirectional Encoder Representations from Transformers):
+Training Task: Masked Language Modeling (MLM). BERT predicts masked words in a sentence based on the surrounding context. This helps it learn deep relationships between words.
+Baseline Model: None explicitly mentioned in the original paper, but it built upon prior word embedding techniques like Word2Vec and GloVe.
+
+GPT (Generative Pre-trained Transformer):
+Training Task: Unsupervised Language Modeling. GPT learns by predicting the next word in a sequence based on the previous words. This allows it to generate human-quality text.
+Baseline Model: Previous versions of GPT itself served as baselines for improvement in subsequent iterations (e.g., GPT-2 built upon GPT-1).
+
+LLaMA (Language Models for Mulmodal Analysis):
+Training Task: Multimodal Masked Language Modeling. LLaMA is trained not only on text but also on code and images. It predicts masked elements (words in text, code tokens, or image regions) based on the surrounding context in all modalities.
+Baseline Model: PaLM (Pathway Language Model) by Google AI, another multimodal LLM with different training strategies.

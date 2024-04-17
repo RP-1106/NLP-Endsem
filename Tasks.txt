@@ -1,0 +1,146 @@
+NLP
+
+1. SUMMARIZATION MODELS
+	https://huggingface.co/models?pipeline_tag=summarization&sort=trending
+	https://huggingface.co/learn/nlp-course/chapter7/5
+	https://iq.opengenus.org/text-summarization-using-rnn/
+	https://www.kaggle.com/code/mohamedmagdy191/text-summarizer-bart-rouge-pytorch
+	https://www.kaggle.com/code/nulldata/training-t5-models-made-easy-with-simplet5
+	https://www.kaggle.com/code/raj26000/abstractive-text-summarization-with-attention
+
+	- EXTRACTIVE
+		1. Using Gensim - TextRank
+			- extractive summarization technique
+			- words appearing more freq are significant
+			- example :
+				import gensim
+				from gensim.summarization import summarize
+
+				og_text = ''
+				short_summary = summarize(og_text)
+				summary_by_ratio=summarize(original_text,ratio=0.1)
+				summary_by_word_count=summarize(article_text,word_count=30)
+				
+		3. LexRank
+			- A sentence which is similar to many other sentences of the text
+			 has a high probability of being important. 
+			- The approach of LexRank is that a particular sentence is recommended 
+			by other similar sentences and hence is ranked higher.
+
+	- ABSTRACTIVE 
+		3. Seq2Seq Models (tensorflow)
+		4. Transformers
+			- provides pretrained models
+			- can be instantiated with "from_pretrained()"
+
+		5. T5 Transformer
+			- encoder-decoder model
+			- converts all problems into text-to-text format
+
+			- example:
+				from transformers import T5Tokenizer, T5Config, T5ForConditionalGeneration
+				my_model = T5ForConditionalGeneration.from_pretrained('t5-small')
+				tokenizer = T5Tokenizer.from_pretrained('t5-small')
+
+				og_text = ''
+				HBox(children=(FloatProgress(value=0.0, description='Downloading', max=1197.0, style=ProgressStyle(description…
+
+				HBox(children=(FloatProgress(value=0.0, description='Downloading', max=242136741.0, style=ProgressStyle(descri…
+
+				HBox(children=(FloatProgress(value=0.0, description='Downloading', max=791656.0, style=ProgressStyle(descripti…
+
+				# Concatenating the word "summarize:" to raw text
+				text = "summarize:" + original_text
+
+				'''T5 is a encoder-decoder mode and hence the input sequence should be in the form of a sequence of ids, or input-ids.
+				How to convert the input text into input-ids ?
+				This process is called encoding the text and can be achieved through encode() method.'''
+
+				input_ids=tokenizer.encode(text, return_tensors='pt', max_length=512)
+
+				# Generating summary ids
+				summary_ids = my_model.generate(input_ids)
+				summary_ids
+
+				t5_summary = tokenizer.decode(summary_ids[0])
+				print(t5_summary)
+
+		6. BERT
+		7. BART Transformer
+			https://www.kaggle.com/code/mohamedmagdy191/text-summarizer-bart-rouge-pytorch
+			- example :
+				from transformers import BartForConditionalGeneration, BartTokenizer, BartConfig
+				tokenizer=BartTokenizer.from_pretrained('facebook/bart-large-cnn')
+				model=BartForConditionalGeneration.from_pretrained('facebook/bart-large-cnn')
+
+				'''You need to pass the input text in the form of a sequence of ids. For this, use the batch_encode_plus() function with the tokenizer. This function returns a dictionary containing the encoded sequence or sequence pair and other additional information.'''
+
+				inputs = tokenizer.batch_encode_plus([original_text],
+				return_tensors='pt')
+				summary_ids = model.generate(inputs['input_ids'], early_stopping=True)
+
+				bart_summary = tokenizer.decode(summary_ids[0], skip_special_tokens=True)
+				print(bart_summary)
+
+		8. GPT-2 Transformer
+			-example :
+				from transformers import GPT2Tokenizer,GPT2LMHeadModel
+
+				# Instantiating the model and tokenizer with gpt-2
+				tokenizer=GPT2Tokenizer.from_pretrained('gpt2')
+				model=GPT2LMHeadModel.from_pretrained('gpt2')
+
+				# Encoding text to get input ids & pass them to model.generate()
+				inputs=tokenizer.batch_encode_plus([original_text],return_tensors='pt',max_length=512)
+				summary_ids=model.generate(inputs['input_ids'],early_stopping=True)
+
+				GPT_summary=tokenizer.decode(summary_ids[0],skip_special_tokens=True)
+
+		9. XLM Transformer
+			- example :
+				# Importing model and tokenizer
+				from transformers import XLMWithLMHeadModel, XLMTokenizer
+
+				# Instantiating the model and tokenizer 
+				tokenizer=XLMTokenizer.from_pretrained('xlm-mlm-en-2048')
+				model=XLMWithLMHeadModel.from_pretrained('xlm-mlm-en-2048')
+
+				# Encoding text to get input ids & pass them to model.generate()
+				inputs=tokenizer.batch_encode_plus([original_text],return_tensors='pt',max_length=512)
+				summary_ids=model.generate(inputs['input_ids'],early_stopping=True)
+
+				# Decode and print the summary
+				XLM_summary=tokenizer.decode(summary_ids[0],skip_special_tokens=True)
+				print(XLM_summary)
+
+2. SENTENCE COMPRESSION
+
+
+3. SARCASM DETECTION CODE
+	https://www.kaggle.com/code/anaidalewis/nlp-miniproject-sarcasm-detection-  
+
+
+	codemix-generation
+	https://www.kaggle.com/datasets/aakritisharmaaa/tamil-english 
+
+	headline_generation
+	https://github.com/sallamander/headline-generation/blob/master/headline_generation/model/model.py-using gru 
+	https://huggingface.co/Michau/t5-base-en-generate-headline-pretrained    
+
+
+
+	Content generation datasets:
+
+	https://goo.gl/0OYkPK
+	https://goo.gl/7R59b1
+	https://goo.gl/XWjas1
+	https://goo.gl/cDmS6I
+	https://goo.gl/iE31Qm
+
+4. TENSE CONVERSION
+	Links that help you get a partially verified 8th question:
+	tense identification: https://stackoverflow.com/a/77072352
+	tense conversion (continuous present - simple present): https://pabasar.medium.com/changing-the-tense-with-nlp-techniques-turning-present-continuous-tense-sentences-into-simple-da14870fff47
+
+5. JUMBLED SENTENCES
+	https://stackoverflow.com/questions/67070702/is-it-possible-with-python-to-reconstruct-a-jumbled-sentence-to-match-a-full-sen
