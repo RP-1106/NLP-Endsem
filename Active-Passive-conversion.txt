@@ -1,0 +1,51 @@
+Here's a breakdown of a rule-based model to identify and convert sentence voice (active/passive) 
+along with an algorithmic approach:
+
+Model Components:
+
+Part-of-Speech (POS) Tagging: Identify the grammatical role (noun, verb, adjective, etc.) 
+of each word in the sentence. Libraries like NLTK (Python) or spaCy (Python) can be used.
+
+Verb Phrase Identification: Locate the verb phrase (main verb and its modifiers). This is 
+crucial for voice identification.
+
+Passive Voice Markers: Check for the presence of the auxiliary verb "be" (is, was, be, been) 
+followed by the past participle of the main verb (e.g., "The cake was baked by me").
+
+Algorithm:
+
+Input Sentence: Take the sentence you want to analyze.
+
+POS Tagging: Use a library to perform POS tagging on the sentence.
+
+Verb Phrase Identification: Identify the verb phrase by finding the main verb and any adverbs or 
+auxiliary verbs associated with it.
+
+Active or Passive Check:
+
+If the verb phrase consists only of a main verb (e.g., "The dog barks"), the sentence is in the 
+Active Voice.
+If the verb phrase includes "be" followed by the past participle (e.g., "The letter was written by 
+me"), the sentence is in the Passive Voice.
+Voice Conversion (Optional):
+
+Active to Passive:
+Identify the subject and object of the sentence.
+Move the object to the beginning of the sentence and make it the subject.
+Change the main verb to the "be" verb conjugated according to tense + past participle of the 
+original verb. (e.g., "The dog barks" -> "The ball is barked by the dog")
+
+Passive to Active:
+Identify the subject and object of the sentence.
+Move the object (often following the preposition "by") to become the subject.
+Change the verb phrase to remove the "be" verb and use the past participle as the main verb. 
+(e.g., "The letter was written by me" -> "I wrote the letter")
+
+Limitations:
+This approach might struggle with complex sentences with multiple clauses or non-standard verb forms.
+Identifying the intended subject/object can be challenging in ambiguous cases.
+
+Further Enhancements:
+Include a dictionary lookup to handle irregular verbs and their past participles.
+Consider dependency parsing to understand the grammatical relationships between words for more 
+accurate subject/object identification.
