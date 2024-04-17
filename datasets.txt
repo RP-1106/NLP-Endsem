@@ -1,0 +1,3 @@
+https://www.kaggle.com/code/raj26000/abstractive-text-summarization-with-attention
+
+https://www.kaggle.com/datasets/sunnysai12345/news-summary
