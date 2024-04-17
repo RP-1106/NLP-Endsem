@@ -1,0 +1,57 @@
+Here's an algorithm for building a model for Named Entity Recognition (NER) and finding words that 
+provide context to the NER word:
+
+Model Building:
+
+Data Preparation:
+Acquire a labeled NER dataset where text is annotated with tags for named entities
+(e.g., Person, Location, Organization).
+Preprocess the text data by performing tasks like tokenization (splitting into words) and lowercasing.
+
+Feature Engineering (Optional):
+Extract features from the text that can help identify named entities. Examples include:
+Word itself (unigrams)
+Combinations of nearby words (bigrams, trigrams)
+Capitalization patterns
+Part-of-speech tags
+
+Model Selection and Training:
+Choose a suitable model architecture for NER, such as:
+Conditional Random Fields (CRFs): Popular choice for NER due to their ability to capture 
+dependencies between words.
+Bi-directional Long Short-Term Memory (Bi-LSTMs): Powerful neural network architecture for 
+sequence modeling tasks like NER.
+Train the model on the prepared data with labeled entities.
+
+Finding Contextual Words:
+Utilize Model Predictions:
+Once trained, use the NER model to predict entity labels for new text.
+
+Windowing Approach:
+Define a window size (number of words before and after) around the identified named entity.
+
+Context Word Extraction:
+Extract all words within the window that are not themself the named entity. These words provide 
+context for the entity.
+
+Algorithm:
+Input: Sentence and pre-trained NER model
+Preprocess Sentence: Tokenize and lowercase the sentence. (Optional: Extract features)
+NER Prediction: Run the sentence through the NER model to get predicted entity labels for each word.
+Identify NER Words: Find all words with labels corresponding to named entities (e.g., Person, Location).
+Context Extraction (for each NER word):
+Define a window size (e.g., +/- 2 words).
+Extract all words within the window surrounding the NER word, excluding the NER word itself.
+These extracted words provide context for the named entity.
+
+Example:
+Sentence: "Barack Obama, the former president of the United States, visited Paris."
+NER Prediction: (Person, B-LOC, I-LOC, I-LOC, O, O, O, O)
+NER Words: Barack Obama, Paris (United States is not considered here as window is +/- 2 words)
+Context for "Barack Obama": former, president
+Context for "Paris": visited
+
+Limitations:
+The window size for context extraction might need adjustments based on the task and sentence complexity.
+This is a simplified approach, and more sophisticated methods can involve dependency parsing to 
+understand the grammatical relationships between words for richer context.
